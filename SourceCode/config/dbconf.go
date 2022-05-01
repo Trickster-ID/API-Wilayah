@@ -14,12 +14,12 @@ func SetUpDatabaseConnection() *gorm.DB{
 	if errEnv != nil {
 		panic("fail to load .env")
 	}
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=Asia/Shanghai",
-		os.Getenv("HOST"),
-		os.Getenv("USER"),
-		os.Getenv("PASS"),
-		os.Getenv("DBNAME"),
-		os.Getenv("PORT"))
+	dbHost := os.Getenv("DB_HOST")
+	dbUser := os.Getenv("DB_USER")
+	dbPass := os.Getenv("DB_PASSWORD")
+	dbName := os.Getenv("DB_NAME")
+	dbPort := os.Getenv("DB_PORT")
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=require TimeZone=Asia/Shanghai",dbHost,dbUser,dbPass,dbName,dbPort)
 	
 	fmt.Println(dsn)
 	db, errDB := gorm.Open(postgres.Open(dsn), &gorm.Config{})

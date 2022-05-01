@@ -49,7 +49,7 @@ func main() {
 		apiGroup.GET("desa/c/:contain", subdistrictCtrl.SubdisGetByContain)
 	}
 	r.GET("", mainPage)
-	r.Run(":8888")
+	r.Run()
 }
 
 func mainPage(cx *gin.Context) {
